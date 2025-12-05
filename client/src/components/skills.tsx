@@ -5,7 +5,7 @@ const skills = [
   {
     category: "Frontend",
     icon: Layout,
-    items: ["HTML5", "CSS3", "JavaScript", "React.js", "Bootstrap", "Tailwind CSS"],
+    items: ["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Bootstrap", "Tailwind CSS"],
   },
   {
     category: "Backend",
@@ -66,7 +66,7 @@ export function Skills() {
               className="glass-card p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/20 text-primary ring-1 ring-primary/20">
+                <div className="p-3 rounded-xl bg-linear-to-br from-primary/20 to-purple-500/20 text-primary ring-1 ring-primary/20">
                   <skillGroup.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold font-heading">{skillGroup.category}</h3>

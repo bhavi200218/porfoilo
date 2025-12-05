@@ -33,11 +33,11 @@ const projects = [
     link: "https://stellular-faun-915cd6.netlify.app/",
   },
   {
-    title: "JavaScript Calculator",
-    description: "Fully functional calculator with clean interface for basic arithmetic operations.",
-    image: "https://images.unsplash.com/photo-1587145820266-a5951eebebb1?auto=format&fit=crop&q=80&w=800",
-    tags: ["JavaScript", "HTML", "CSS"],
-    link: "https://friendly-travesseiro-27cfd3.netlify.app/",
+    title: "Finovate Outsourcing Solutions",
+    description: "Professional business outsourcing solutions website with modern design and responsive layout.",
+    image: "/finovate.png",
+    tags: ["WordPress", "Web Design", "Business Solutions"],
+    link: "https://finovateoutsourcingsolutions.com/",
   },
   {
     title: "Tic Tac Toe",
@@ -64,11 +64,11 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+          className="flex flex-col items-center justify-center mb-16 gap-6"
         >
-          <div>
+          <div className="text-center w-full">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Featured Projects</h2>
-            <p className="text-muted-foreground max-w-xl">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               A selection of projects demonstrating my expertise in frontend and full-stack development.
             </p>
           </div>
@@ -83,7 +83,7 @@ export function Projects() {
           </div>
         </motion.div>
 
-        <div className="overflow-hidden -mx-4 px-4 md:-mx-0 md:px-0 py-8" ref={emblaRef}>
+        <div className="overflow-hidden -mx-4 px-4 md:mx-0 md:px-0 py-8" ref={emblaRef}>
           <div className="flex gap-6 md:gap-8 touch-pan-y">
             {projects.map((project, index) => (
               <div className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_350px] min-w-0" key={index}>
@@ -94,7 +94,7 @@ export function Projects() {
                 >
                   <Card className="h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 group">
                     <div className="relative h-48 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity" />
+                      <div className="absolute inset-0 bg-linear-to-t from-background/90 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity" />
                       <img
                         src={project.image}
                         alt={project.title}
@@ -106,7 +106,7 @@ export function Projects() {
                       <h3 className="text-xl font-bold font-heading mb-2 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3 grow">
                         {project.description}
                       </p>
                       

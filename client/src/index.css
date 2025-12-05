@@ -49,80 +49,85 @@
   --color-chart-5: hsl(var(--chart-5));
 }
 
-/* Light Mode */
+/* Light Mode - Purple & Pink Gradient Theme */
 :root {
-  --background: 210 40% 98%;
-  --foreground: 222 47% 11%;
+  --background: 0 0% 100%;
+  --foreground: 270 15% 15%; /* Darker text for better contrast */
+  --gradient-from: 270 90% 95%;
+  --gradient-to: 330 90% 95%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card: 0 0% 100% / 0.9; /* Slightly transparent cards */
+  --card-foreground: 270 20% 15%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover: 0 0% 100% / 0.95;
+  --popover-foreground: 270 20% 15%;
 
-  --primary: 262 83% 58%; /* Vivid Purple */
-  --primary-foreground: 210 40% 98%;
+  --primary: 270 80% 60%; /* Vibrant Purple */
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
+  --secondary: 270 30% 95%; /* Very Light Purple */
+  --secondary-foreground: 270 80% 40%;
 
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 270 20% 97%;
+  --muted-foreground: 270 10% 50%;
 
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
+  --accent: 270 40% 96%; /* Slightly darker than secondary */
+  --accent-foreground: 270 80% 40%;
 
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 262 83% 58%;
+  --border: 270 20% 90%;
+  --input: 270 20% 90%;
+  --ring: 270 80% 60%;
 
-  --radius: 0.75rem;
-
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  --chart-1: 270 80% 60%; /* Primary Purple */
+  --chart-2: 300 70% 70%; /* Pink-Purple */
+  --chart-3: 330 80% 75%; /* Soft Pink */
+  --chart-4: 270 60% 70%; /* Lighter Purple */
+  --chart-5: 300 50% 60%; /* Muted Pink */
+  
+  /* Gradient background for the page */
+  --gradient-stops: 
+    hsl(var(--gradient-from)),
+    hsl(var(--gradient-to));
 }
 
-/* Dark Mode */
+/* Dark Mode - Deep Brown & Warm Gray */
 .dark {
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
+  --background: 24 10% 8%; /* Very Dark Brown */
+  --foreground: 24 10% 95%;
 
-  --card: 222 47% 11%; /* Keeping card same as bg for seamless feel, or slightly lighter */
-  --card-foreground: 210 40% 98%;
+  --card: 24 10% 10%; 
+  --card-foreground: 24 10% 95%;
 
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 24 10% 10%;
+  --popover-foreground: 24 10% 95%;
 
-  --primary: 262 83% 65%; /* Lighter Purple for dark mode */
-  --primary-foreground: 222 47% 11%;
+  --primary: 24 30% 65%; /* Warm Brown */
+  --primary-foreground: 24 10% 8%;
 
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 24 5% 20%; /* Dark Gray */
+  --secondary-foreground: 24 10% 95%;
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 24 5% 20%; /* Dark Gray */
+  --muted-foreground: 24 5% 70%;
 
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 24 10% 25%; /* Slightly Lighter Gray */
+  --accent-foreground: 24 10% 95%;
 
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 0 60% 50%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 262 83% 65%;
+  --border: 24 10% 25%;
+  --input: 24 10% 25%;
+  --ring: 24 30% 65%;
 
-  --chart-1: 220 70% 50%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
+  --chart-1: 24 30% 65%; /* Warm Brown */
+  --chart-2: 24 10% 60%; /* Medium Gray */
+  --chart-3: 24 20% 50%; /* Darker Brown */
+  --chart-4: 24 10% 40%; /* Dark Gray-Brown */
+  --chart-5: 24 15% 45%; /* Warm Gray */
 }
 
 @layer base {

@@ -1,7 +1,21 @@
-import { motion } from "framer-motion";
-import { Briefcase, GraduationCap } from "lucide-react";
+"use client";
 
-const experiences = [
+import { motion } from "framer-motion";
+import { Briefcase, Code, Cpu, Database, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback, useEffect, useState, ReactNode } from 'react';
+
+// Define types
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  description: string[];
+  icon: ReactNode;
+  tech: string[];
+}
+
+const experiences: ExperienceItem[] = [
   {
     role: "Full Stack Development Intern",
     company: "Internshala Trainings",
@@ -12,6 +26,8 @@ const experiences = [
       "Developed and deployed fully functional web applications.",
       "Collaborated in a team environment working on live projects."
     ],
+    icon: <Code className="h-5 w-5" />,
+    tech: ["HTML", "CSS", "JavaScript", "React", "Node.js", "MongoDB"]
   },
   {
     role: "Artificial Intelligence Intern",
@@ -22,6 +38,8 @@ const experiences = [
       "Implemented algorithms in NLP, computer vision, and data analysis.",
       "Conducted data preprocessing and model optimization."
     ],
+    icon: <Cpu className="h-5 w-5" />,
+    tech: ["Python", "TensorFlow", "NLP", "Computer Vision"]
   },
   {
     role: "C++ Programming Intern",
@@ -32,108 +50,153 @@ const experiences = [
       "Adhered to best practices in C++ development and debugging.",
       "Gained hands-on experience with modern C++ features."
     ],
-  },
-];
-
-const education = [
-  {
-    degree: "Bachelor's of Computer Application",
-    institution: "Computer • Ahemdabad , Gujarat",
-    year: "Graduated",
-  },
-  {
-    degree: "Senior Secondary",
-    institution: "CBSE Board • Banswara, Rajasthan",
-    year: "Completed",
+    icon: <Database className="h-5 w-5" />,
+    tech: ["C++", "Data Structures", "Algorithms"]
   },
 ];
 
 export function Experience() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'start',
+    skipSnaps: false,
+    dragFree: true
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const scrollTo = useCallback((index: number) => {
+    if (!emblaApi) return;
+    emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!emblaApi || isHovered) return;
+
+    const autoScroll = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(autoScroll);
+  }, [emblaApi, isHovered]);
+
   return (
-    <section id="experience" className="py-24 bg-secondary/30 relative">
+    <section id="experience" className="py-16 bg-muted/30 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10" />
+
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Experience & Education</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My professional journey and academic background that shaped my skills.
+          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">Work Experience</h2>
+          <p className="text-muted-foreground/80 max-w-2xl mx-auto">
+            My professional journey and the roles that shaped my career.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Experience Column */}
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                <Briefcase className="h-6 w-6" />
-              </div>
-              <h3 className="text-2xl font-bold font-heading">Work Experience</h3>
-            </div>
-
-            <div className="space-y-8 relative border-l-2 border-border ml-3 pl-8 md:pl-10 pb-4">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  <span className="absolute -left-[41px] md:-left-[49px] top-0 h-5 w-5 rounded-full border-4 border-background bg-primary" />
-                  
-                  <div className="glass-card p-6 md:p-8 hover:bg-card/50 transition-colors">
-                    <span className="text-sm font-semibold text-primary mb-2 block">{exp.period}</span>
-                    <h4 className="text-xl font-bold mb-1">{exp.role}</h4>
-                    <h5 className="text-muted-foreground mb-4">{exp.company}</h5>
-                    <ul className="space-y-2">
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/50 shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex -mx-4">
+              {experiences.map((exp: ExperienceItem, index: number) => (
+                <div key={index} className="flex-[0_0_100%] px-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="group relative h-full"
+                  >
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-primary/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 blur transition duration-500 group-hover:duration-200" />
+                    <div className="relative bg-card/70 backdrop-blur-sm p-4 rounded-xl border border-border hover:border-primary/30 transition-all duration-300 h-full max-w-sm mx-auto">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-lg bg-primary/10 text-primary mt-1">
+                          {exp.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-base font-semibold text-foreground">{exp.role}</h3>
+                          <p className="text-primary text-sm font-medium">{exp.company}</p>
+                          <span className="text-xs text-muted-foreground block mt-0.5">{exp.period}</span>
+                        </div>
+                      </div>
+                      
+                      <ul className="mt-2 space-y-1">
+                        {exp.description.map((item: string, i: number) => (
+                          <li key={i} className="flex items-start gap-1.5 text-muted-foreground text-xs leading-relaxed">
+                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/70 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        {exp.tech.map((tech: string, i: number) => (
+                          <span 
+                            key={i}
+                            className="text-[10px] bg-secondary/50 text-foreground/80 px-1.5 py-0.5 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Education Column */}
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                <GraduationCap className="h-6 w-6" />
-              </div>
-              <h3 className="text-2xl font-bold font-heading">Education</h3>
-            </div>
-
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-card p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4"
-                >
-                  <div>
-                    <h4 className="text-lg font-bold mb-1">{edu.degree}</h4>
-                    <p className="text-muted-foreground">{edu.institution}</p>
-                  </div>
-                  <span className="text-sm font-semibold px-3 py-1 rounded-full bg-secondary text-secondary-foreground w-fit">
-                    {edu.year}
-                  </span>
-                </motion.div>
+          {/* Navigation buttons */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button 
+              onClick={() => emblaApi?.scrollPrev()}
+              className="p-2 rounded-full bg-card border border-border hover:bg-accent transition-colors"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <div className="flex items-center gap-2">
+              {scrollSnaps.map((_, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => scrollTo(idx)}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    idx === selectedIndex ? 'bg-primary' : 'bg-border'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
               ))}
             </div>
+            <button 
+              onClick={() => emblaApi?.scrollNext()}
+              className="p-2 rounded-full bg-card border border-border hover:bg-accent transition-colors"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </div>
