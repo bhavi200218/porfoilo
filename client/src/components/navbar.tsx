@@ -73,7 +73,11 @@ export function Navbar() {
             >
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <Button size="sm" className="rounded-full px-6 bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button
+              size="sm"
+              className="rounded-full px-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+              onClick={(e) => scrollToSection(e as any, "#contact")}
+            >
               Hire Me
             </Button>
           </div>
@@ -118,7 +122,12 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <Button className="w-full rounded-full mt-4">Hire Me</Button>
+              <Button
+                className="w-full rounded-full mt-4"
+                onClick={(e) => scrollToSection(e as any, "#contact")}
+              >
+                Hire Me
+              </Button>
             </div>
           </motion.div>
         )}

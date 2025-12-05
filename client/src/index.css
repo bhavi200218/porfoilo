@@ -156,18 +156,18 @@
 }
 
 /* Utility for glassmorphism */
-.glass {
+@utility glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+@utility glass-card {
+  @apply glass rounded-xl shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30;
+}
+
 .dark .glass {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glass-card {
-  @apply glass rounded-xl shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary/30;
 }

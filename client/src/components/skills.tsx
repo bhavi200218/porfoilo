@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Database, Layout, Server, GitBranch, Terminal } from "lucide-react";
+import { Code2, Database, Layout, Server, GitBranch, Terminal, Languages } from "lucide-react";
 
 const skills = [
   {
@@ -26,6 +26,11 @@ const skills = [
     category: "Programming",
     icon: Code2,
     items: ["C++", "JavaScript", "Python (Basic)"],
+  },
+  {
+    category: "Languages",
+    icon: Languages,
+    items: ["English", "Hindi"],
   },
 ];
 

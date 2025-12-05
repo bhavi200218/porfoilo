@@ -4,6 +4,7 @@ import { Experience } from "@/components/experience";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50 bg-background/50 backdrop-blur-sm">
         <p>© {new Date().getFullYear()} Bhawanshi Dosi. All rights reserved.</p>
       </footer>
+      <ScrollToTop />
     </div>
   );
 }

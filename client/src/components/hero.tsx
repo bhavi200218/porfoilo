@@ -56,11 +56,20 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-wrap items-center justify-center gap-4"
           >
-            <Button size="lg" className="rounded-full text-base h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25">
+            <Button 
+              size="lg" 
+              className="rounded-full text-base h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            >
               <FileDown className="mr-2 h-5 w-5" />
-              Download Resume
+              Get Resume
             </Button>
-            <Button variant="outline" size="lg" className="rounded-full text-base h-12 px-8 border-primary/20 hover:bg-primary/5">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="rounded-full text-base h-12 px-8 border-primary/20 hover:bg-primary/5"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            >
               Contact Me
             </Button>
           </motion.div>
