@@ -1,0 +1,66 @@
+Bhawanshi Dosi
+ bhavid2002@gmail.com 
++91 9799165054 
+Banswara, Rajasthan
+ Education
+ Bachelor's of Computer Application
+ Computer • Ahemdabad , Gujarat
+ Senior Secondary
+ CBSE Board • Banswara, Rajasthan
+ Secondary
+ CBSE Board • Banswara, Rajasthan
+ Experience
+ 07/2024
+ 06/2019
+ 04/2017
+ Internship | Full Stack Development Intern
+ Internshala Trainings
+ 12/2023 - 07/2024
+ Successfully completed a comprehensive Full Stack Development internship, focusing on both front-end and back-end
+ technologies.
+ Gained hands-on experience with key technologies including HTML, CSS, JavaScript, React.js, Node.js, Express, and
+ MongoDB.
+ Developed and deployed fully functional web applications, following best practices in coding, testing, and debugging.
+ Collaborated in a team environment, working on live projects, and enhancing problem-solving skills.
+ Strengthened understanding of RESTful APIs, database management, and version control using Git.
+ Internship | Artificial Intelligence Intern
+ CodSoft
+ 09/2023 - 10/2023
+ Developed AI and machine learning models to solve real-world problems, enhancing prediction accuracy and
+ performance.
+ Collaborated with a team to design and implement algorithms in areas such as natural language processing, computer
+ vision, and data analysis.
+ Conducted data preprocessing, feature engineering, and model optimization to improve system efficiency.
+ Participated in code reviews, project planning, and documentation, ensuring adherence to best practices in AI
+ development.
+ Internship | C++ Programming Intern
+ InternPe
+ 06/2023 - 07/2023
+ Developed and optimized C++ programs for various projects, focusing on improving performance and code efficiency.
+ Collaborated with a team to design, implement, and test software solutions, adhering to best practices in C++
+ development.
+ Assisted in debugging and troubleshooting existing codebases, contributing to the resolution of critical software issues.
+ Gained hands-on experience with modern C++ features and tools, enhancing proficiency in object-oriented
+ programming, data structures, and algorithms.
+LinkedIn Profile  
+Portfolio  
+GitHub Profile  
+Self-Projects
+ Food App: Developed a user-friendly restaurant menu app that allows customers to browse dishes, view details, and
+ place orders seamlessly.
+ Project-link : https://luxury-sprite-39e324.netlify.app/
+ JavaScript Calculator: Created a fully functional calculator with a clean interface, capable of performing basic arithmetic
+ operations using JavaScript.
+ Project-link : https://friendly-travesseiro-27cfd3.netlify.app/
+ Tic Tac Toe App: Built an interactive Tic Tac Toe game with a responsive design, enabling single and two-player modes.
+ Project-link : https://radiant-dodol-53ef05.netlify.app/
+ E-commerce Website: Designed and developed an e-commerce platform featuring product listings, shopping cart
+ functionality, and a streamlined checkout process.
+ Project-link : https://illustrious-biscotti-334768.netlify.app/
+ Twitter Page: Constructed a custom Twitter page clone that replicates key features like posting, liking, and following,
+ with an intuitive user experience.
+ Project-link : https://stellular-faun-915cd6.netlify.app/
+ Skills
+ HTML5, CSS, Bootstrap, JavaScript, React.js, Node.js, MongoDB, MySQL, Git, GitHub
+ Languages
+ English, Hindi
