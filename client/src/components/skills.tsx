@@ -63,24 +63,29 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300"
+              className="group relative p-0.5 rounded-xl bg-gradient-to-br from-primary/20 via-background to-background hover:from-primary/30 hover:via-background/90 hover:to-background/90 transition-all duration-300 hover:shadow-lg"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-linear-to-br from-primary/20 to-purple-500/20 text-primary ring-1 ring-primary/20">
-                  <skillGroup.icon className="h-6 w-6" />
+              <div className="absolute inset-0.5 rounded-lg bg-background/80 backdrop-blur-sm group-hover:bg-background/90 transition-colors duration-300" />
+              <div className="relative z-10 p-6 md:p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/20 text-primary ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300">
+                    <skillGroup.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold font-heading text-foreground group-hover:text-primary/90 transition-colors duration-300">
+                    {skillGroup.category}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-bold font-heading">{skillGroup.category}</h3>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {skillGroup.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1.5 rounded-md bg-background/50 border border-border text-sm font-medium text-foreground/80 hover:border-primary/50 hover:text-primary transition-colors cursor-default"
-                  >
-                    {item}
-                  </span>
-                ))}
+                
+                <div className="flex flex-wrap gap-2">
+                  {skillGroup.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 rounded-md bg-background/70 border border-border/50 text-sm font-medium text-foreground/90 hover:bg-background hover:border-primary/50 hover:text-primary transition-all duration-200 cursor-default shadow-sm"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
