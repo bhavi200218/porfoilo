@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import { useEffect } from "react";
+import { FloatingElements } from "@/components/floating-elements";
 
 function Router() {
   return (
@@ -28,11 +29,17 @@ function App() {
             {/* Background element */}
             <div className={cn(
               "fixed inset-0 -z-10 transition-all duration-300",
-              // Light theme - more visible pink
-              "bg-linear-to-br from-pink-100 to-pink-50",
-              // Dark theme - gradient
-              "dark:bg-linear-to-br dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900"
-            )} />
+              // Light theme
+              "bg-gradient-to-br from-background to-muted/10",
+              // Dark theme
+              "dark:from-gray-900 dark:to-gray-950"
+            )}>
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/5 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent" />
+              </div>
+              <FloatingElements />
+            </div>
             
             {/* Content */}
             <div className="relative z-10">

@@ -1,6 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { FileDown, Github, Linkedin, Mail, Code, Smartphone, Server } from "lucide-react";
+import { FileDown, Mail, Code, Smartphone, Server, MousePointerClick, ArrowRight } from "lucide-react";
+import { FloatingElements } from "./floating-elements";
+import { useRef } from "react";
+import React from "react";
 
 export function Hero() {
   const scrollToContact = () => {
@@ -20,86 +23,149 @@ export function Hero() {
     document.body.removeChild(link);
   };
 
-  return (
-    <section id="home" className="relative min-h-[70vh] flex items-center justify-center pt-32 pb-8 overflow-hidden bg-linear-to-br from-background to-muted/20">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-center text-center max-w-5xl mx-auto space-y-6">
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
 
-          <motion.h1
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+
+  return (
+    <section 
+      ref={targetRef}
+      id="home" 
+      className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pt-4 pb-12 overflow-hidden bg-gradient-to-br from-background to-muted/10"
+      style={{ perspective: '1000px' }}
+    >
+      <FloatingElements />
+      
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <motion.div 
+          className="flex flex-col items-center text-center max-w-5xl mx-auto space-y-6"
+          style={{ opacity, y, scale }}
+        >
+
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+            className="relative inline-block"
           >
-            Hi, I'm <span className="text-primary">Bhawanshi Dosi</span>
-          </motion.h1>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500">Bhawanshi Dosi</span>
+            </h1>
+          </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+            className="relative"
           >
-            Full-stack developer passionate about creating exceptional digital experiences using modern web technologies.
-          </motion.p>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed p-6 rounded-lg border border-border/50 bg-card">
+              Crafting exceptional digital experiences with modern web technologies.
+            </p>
+          </motion.div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 w-full"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-6xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="bg-card p-6 rounded-xl border border-border/50 hover:border-primary/50 transition-all">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 mx-auto">
-                <Code className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Web Development</h3>
-              <p className="text-muted-foreground text-sm">Custom websites and web applications built with modern technologies</p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl border border-border/50 hover:border-primary/50 transition-all">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 mx-auto">
-                <Smartphone className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Responsive Design</h3>
-              <p className="text-muted-foreground text-sm">Beautiful designs that work perfectly on all devices</p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl border border-border/50 hover:border-primary/50 transition-all">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 mx-auto">
-                <Server className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Backend Solutions</h3>
-              <p className="text-muted-foreground text-sm">Robust server-side solutions and API development</p>
-            </div>
+            {[
+              {
+                icon: <Code className="w-6 h-6 text-purple-500" />,
+                title: "Web Development",
+                description: "Custom websites and web applications built with modern technologies",
+                color: "from-purple-500/20 to-purple-500/5",
+                border: "border-purple-500/20"
+              },
+              {
+                icon: <Smartphone className="w-6 h-6 text-pink-500" />,
+                title: "Responsive Design",
+                description: "Beautiful designs that work perfectly on all devices",
+                color: "from-pink-500/20 to-pink-500/5",
+                border: "border-pink-500/20"
+              },
+              {
+                icon: <Server className="w-6 h-6 text-blue-500" />,
+                title: "Backend Solutions",
+                description: "Robust server-side solutions and API development",
+                color: "from-blue-500/20 to-blue-500/5",
+                border: "border-blue-500/20"
+              }
+            ].map((item, index) => (
+              <motion.div 
+                key={index}
+                className={`rounded-xl border ${item.border} hover:shadow-md transition-all duration-300 group`}
+                whileHover={{ y: -5 }}
+              >
+                <div className="bg-card p-6 rounded-xl h-full">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 mx-auto transition-transform group-hover:scale-110`}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <MousePointerClick className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 mt-8"
+            className="flex flex-wrap justify-center gap-6 mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Button 
-              size="lg" 
-              className="gap-2"
-              onClick={scrollToContact}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative group"
             >
-              <Mail className="w-4 h-4" />
-              Get in Touch
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="gap-2"
-              onClick={handleDownloadCV}
+              <Button 
+                size="lg" 
+                className="relative gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                onClick={scrollToContact}
+              >
+                <Mail className="w-4 h-4" />
+                Get in Touch
+                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative group"
             >
-              <FileDown className="w-4 h-4" />
-              Download CV
-            </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="relative gap-2 bg-background/50 backdrop-blur-sm border-2 border-border/50 hover:border-purple-500/50"
+                onClick={handleDownloadCV}
+              >
+                <FileDown className="w-4 h-4" />
+                Download CV
+              </Button>
+            </motion.div>
           </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,101 +4,228 @@
 
 @layer base {
   :root {
-    /* Light Theme - Slightly Darker Baby Pink & Purple */
-    --background: 340 80% 92%; /* Slightly darker baby pink */
-    --foreground: 270 50% 40%; /* Deep purple - Fallback */
+    /* Vibrant Theme - High Contrast with Gradients */
+    --background: 260 70% 96%; /* Very light purple tint */
+    --foreground: 270 100% 30%; /* Deep purple for text */
 
-    --muted: 340 60% 88%; /* Slightly darker baby pink */
-    --muted-foreground: 270 30% 40%; /* Muted purple - Fallback */
+    --muted: 260 30% 92%;
+    --muted-foreground: 270 50% 40%;
 
-    --popover: 340 80% 92%; /* Matching background */
-    --popover-foreground: 270 50% 40%; /* Purple - Fallback */
+    --popover: 260 70% 98%;
+    --popover-foreground: 270 100% 30%;
 
-    --card: 340 80% 92%; /* Matching background */
-    --card-foreground: 270 50% 40%; /* Purple - Fallback */
+    --card: 260 70% 98%;
+    --card-foreground: 270 100% 30%;
 
-    --border: 340 30% 85%; /* Slightly darker pink border */
-    --input: 340 30% 85%; /* Slightly darker pink input */
+    --border: 270 50% 90%;
+    --input: 270 50% 90%;
 
-    --primary: 270 50% 40%; /* Deep purple */
-    --primary-foreground: 0 0% 100%; /* White text for better contrast */
+    --primary: 270 80% 50%; /* Vibrant purple */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 60% 88%; /* Slightly darker baby pink */
-    --secondary-foreground: 270 50% 40%; /* Purple - Fallback */
+    --secondary: 320 80% 50%; /* Pink */
+    --secondary-foreground: 0 0% 100%;
 
-    --accent: 340 60% 88%; /* Slightly darker baby pink */
-    --accent-foreground: 270 50% 40%; /* Purple - Fallback */
+    --accent: 210 90% 50%; /* Blue */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%; /* White text */
+    --destructive: 0 90% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --ring: 270 30% 80%; /* Light purple ring */
+    --ring: 270 80% 80%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    --shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+    --elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --elevation-3: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
 
   .dark {
-    /* Dark Theme - Lighter Grey & Brown/White */
-    --background: 0 0% 30%; /* Lighter grey background */
-    --foreground: 0 0% 95%; /* Off-white text for better readability */
+    /* Dark Theme - High Contrast with Neon Accents */
+    --background: 240 20% 8%; /* Deep navy blue */
+    --foreground: 0 0% 98%; /* Off-white */
 
-    --muted: 0 0% 40%; /* Slightly lighter grey */
-    --muted-foreground: 0 0% 90%; /* Lighter text for muted elements */
+    --muted: 240 15% 15%;
+    --muted-foreground: 240 5% 85%;
 
-    --popover: 0 0% 30%; /* Matching background */
-    --popover-foreground: 0 0% 95%; /* Off-white text */
+    --popover: 240 20% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --card: 0 0% 30%; /* Matching background */
-    --card-foreground: 0 0% 95%; /* Off-white text */
+    --card: 240 20% 10%;
+    --card-foreground: 0 0% 98%;
 
-    --border: 0 0% 45%; /* Lighter grey border */
-    --input: 0 0% 45%; /* Lighter grey input */
+    --border: 240 20% 25%;
+    --input: 240 20% 25%;
 
-    --primary: 30 40% 80%; /* Lighter brown/beige */
-    --primary-foreground: 0 0% 20%; /* Dark grey for contrast */
+    --primary: 270 90% 70%; /* Bright purple */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 40%; /* Slightly lighter grey */
-    --secondary-foreground: 0 0% 100%; /* White text for better contrast */
+    --secondary: 320 90% 70%; /* Bright pink */
+    --secondary-foreground: 0 0% 0%;
 
-    --accent: 0 0% 40%; /* Slightly lighter grey */
-    --accent-foreground: 0 0% 100%; /* White text */
+    --accent: 190 90% 70%; /* Bright cyan */
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 62.8% 40%; /* Brighter red for better visibility */
-    --destructive-foreground: 0 0% 100%; /* White text */
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --ring: 0 0% 50%; /* Lighter grey ring */
+    --ring: 270 90% 70%;
+    
+    --shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+    --elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    --elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.25);
+    --elevation-3: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
   }
 }
 
 @layer utilities {
+  /* Enhanced Gradients */
   .text-gradient {
-    background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradient 3s ease infinite;
   }
 
   .dark .text-gradient {
-    background: linear-gradient(90deg, #f9fafb 0%, #d1d5db 100%);
+    background: linear-gradient(90deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradient 3s ease infinite;
+  }
+
+  /* 3D Effects */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--elevation-2);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-5px) rotateX(5deg);
+    box-shadow: var(--elevation-3);
+  }
+
+  .btn-3d {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-3d:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+
+  /* Glass Morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Animations */
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    scroll-behavior: smooth;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background-image: 
+      radial-gradient(at 40% 20%, hsla(270, 90%, 80%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(320, 90%, 60%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(210, 90%, 70%, 0.1) 0px, transparent 50%);
+  }
+
+  .dark body {
+    background-image: 
+      radial-gradient(at 40% 20%, hsla(270, 90%, 40%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(320, 90%, 40%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(190, 90%, 40%, 0.1) 0px, transparent 50%);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply text-foreground;
+    @apply font-bold tracking-tight text-foreground;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
   
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  
   .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    @apply text-foreground;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Enhanced buttons */
+  .btn {
+    @apply px-6 py-2 rounded-lg font-medium transition-all duration-200 ease-in-out
+           transform hover:scale-105 active:scale-95;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground
+           shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary to-accent text-secondary-foreground
+           shadow-md hover:shadow-lg;
+  }
+  
+  /* Card styling */
+  .card {
+    @apply rounded-xl p-6 transition-all duration-300 ease-in-out
+           bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm
+           border border-gray-200 dark:border-gray-700
+           hover:shadow-lg;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
   }
 }

@@ -128,35 +128,39 @@ export function Experience() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="group relative h-full"
+                    className="group relative h-full flex justify-center"
                   >
-                    <div className="absolute -inset-0.5 bg-linear-to-r from-primary/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 blur transition duration-500 group-hover:duration-200" />
-                    <div className="relative bg-card/70 backdrop-blur-sm p-4 rounded-xl border border-border hover:border-primary/30 transition-all duration-300 h-full max-w-sm mx-auto">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-primary/10 text-primary mt-1">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 blur transition duration-500 group-hover:duration-200" />
+                    <div className="relative bg-card/80 backdrop-blur-sm p-6 rounded-xl border border-border hover:border-primary/30 transition-all duration-300 h-full w-full max-w-2xl mx-auto shadow-lg">
+                      <div className="flex items-start gap-6">
+                        <div className="p-3 rounded-xl bg-primary/10 text-primary mt-1 flex-shrink-0">
                           {exp.icon}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-base font-semibold text-foreground">{exp.role}</h3>
-                          <p className="text-primary text-sm font-medium">{exp.company}</p>
-                          <span className="text-xs text-muted-foreground block mt-0.5">{exp.period}</span>
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                            <div>
+                              <h3 className="text-lg font-semibold text-foreground">{exp.role}</h3>
+                              <p className="text-primary text-sm font-medium">{exp.company}</p>
+                            </div>
+                            <span className="text-sm text-muted-foreground">{exp.period}</span>
+                          </div>
+                          
+                          <ul className="mt-4 space-y-2">
+                            {exp.description.map((item: string, i: number) => (
+                              <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm leading-relaxed">
+                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70 flex-shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
                       
-                      <ul className="mt-2 space-y-1">
-                        {exp.description.map((item: string, i: number) => (
-                          <li key={i} className="flex items-start gap-1.5 text-muted-foreground text-xs leading-relaxed">
-                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/70 shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <div className="mt-2 flex flex-wrap gap-1">
+                      <div className="mt-4 pt-4 border-t border-border/50 flex flex-wrap gap-2">
                         {exp.tech.map((tech: string, i: number) => (
                           <span 
                             key={i}
-                            className="text-[10px] bg-secondary/50 text-foreground/80 px-1.5 py-0.5 rounded-full"
+                            className="text-xs bg-secondary/30 text-foreground/80 px-3 py-1 rounded-full border border-border/30 hover:bg-primary/10 hover:border-primary/30 transition-colors"
                           >
                             {tech}
                           </span>

@@ -28,6 +28,13 @@ export function Contact() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Show loading state
+    const loadingToast = toast({
+      title: "Sending...",
+      description: "Your message is being sent.",
+      duration: 2000,
+    });
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -37,22 +44,48 @@ export function Contact() {
         body: JSON.stringify(values),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
+      // Parse response as text first to handle non-JSON responses
+      const responseText = await response.text();
+      let data;
+      
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch (e) {
+        console.error('Failed to parse JSON response:', responseText);
+        throw new Error('Received an invalid response from the server');
       }
-
+      
+      if (!response.ok) {
+        throw new Error(data.error || `Request failed with status ${response.status}`);
+      }
+      
+      // Show success message
       toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Message Sent! 🎉",
+        description: "Thank you for reaching out. I'll get back to you soon!",
       });
-      form.reset();
+      
+      // Reset form after successful submission
+      form.reset({
+        name: "",
+        email: "",
+        message: ""
+      });
+      
     } catch (error) {
       console.error('Error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: `Failed to send message: ${errorMessage}`,
         variant: "destructive",
       });
+    }
+    
+    // Dismiss the loading toast in a finally block to ensure it's always dismissed
+    if (loadingToast && typeof loadingToast === 'object' && 'dismiss' in loadingToast) {
+      loadingToast.dismiss();
     }
   }
 
