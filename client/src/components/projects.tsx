@@ -12,6 +12,34 @@ import twitterImg from "@assets/generated_images/social_media_twitter_clone_inte
 
 const projects = [
   {
+    title: "Women's Lifestyle",
+    description: "Modern lifestyle website for women featuring fashion, wellness, and lifestyle content with elegant design.",
+    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800",
+    tags: ["React", "Web Design", "Lifestyle"],
+    link: "https://womenslifestyle.netlify.app/",
+  },
+  {
+    title: "Revenue Landing Page",
+    description: "High-converting landing page designed for revenue generation with modern marketing principles.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    tags: ["React", "Marketing", "Landing Page"],
+    link: "https://revenue-landingpage.netlify.app/",
+  },
+  {
+    title: "Certificate Generator",
+    description: "Interactive certificate generator tool with customizable templates and professional output.",
+    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&q=80&w=800",
+    tags: ["React", "Tools", "Generator"],
+    link: "https://bhavicertificategenerator.netlify.app/",
+  },
+  {
+    title: "Finovate Outsourcing Solutions",
+    description: "Professional business outsourcing solutions website with modern design and responsive layout.",
+    image: "https://images.unsplash.com/photo-1668901382969-8c73e450a1f5?auto=format&fit=crop&q=80&w=800",
+    tags: ["WordPress", "Web Design", "Business Solutions"],
+    link: "https://finovateoutsourcingsolutions.com/",
+  },
+  {
     title: "Food App",
     description: "User-friendly restaurant menu app allowing browsing, viewing details, and placing orders seamlessly.",
     image: foodAppImg,
@@ -23,7 +51,14 @@ const projects = [
     description: "Full-featured e-commerce platform with product listings, cart functionality, and streamlined checkout.",
     image: ecommerceImg,
     tags: ["React", "Redux", "Stripe", "Firebase"],
-    link: "https://illustrious-biscotti-334768.netlify.app/",
+    link: "https://friendly-travesseiro-27cfd3.netlify.app/",
+  },
+  {
+    title: "Tic Tac Toe",
+    description: "Interactive game with responsive design, enabling single and two-player modes.",
+    image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=800",
+    tags: ["JavaScript", "Game Dev", "CSS"],
+    link: "https://radiant-dodol-53ef05.netlify.app/",
   },
   {
     title: "Twitter Clone",
@@ -31,20 +66,6 @@ const projects = [
     image: twitterImg,
     tags: ["React", "Firebase", "Tailwind CSS"],
     link: "https://stellular-faun-915cd6.netlify.app/",
-  },
-  {
-    title: "Finovate Outsourcing Solutions",
-    description: "Professional business outsourcing solutions website with modern design and responsive layout.",
-    image: "/finovate.png",
-    tags: ["WordPress", "Web Design", "Business Solutions"],
-    link: "https://finovateoutsourcingsolutions.com/",
-  },
-  {
-    title: "Tic Tac Toe",
-    description: "Interactive game with responsive design, enabling single and two-player modes.",
-    image: "https://images.unsplash.com/photo-1668901382969-8c73e450a1f5?auto=format&fit=crop&q=80&w=800",
-    tags: ["JavaScript", "Game Dev", "CSS"],
-    link: "https://radiant-dodol-53ef05.netlify.app/",
   },
 ];
 
