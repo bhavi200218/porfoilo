@@ -40,10 +40,9 @@ async function buildAll() {
   console.log("building client...");
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
-  const clientConfigPath = join(__dirname, "../client/vite.config.ts");
   
   await viteBuild({
-    configFile: clientConfigPath,
+    configFile: join(__dirname, "../client/vite.config.ts"),
   });
 
   console.log("building server...");
