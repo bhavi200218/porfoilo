@@ -4,91 +4,94 @@ import { Code2, Database, Layout, Server, GitBranch, Terminal, Languages } from 
 const skills = [
   {
     category: "Frontend",
-    icon: Layout,
-    items: ["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Bootstrap", "Tailwind CSS"],
+    items: ["React.js", "Next.js", "Tailwind CSS", "Bootstrap", "HTML5", "CSS3", "JavaScript"],
   },
   {
     category: "Backend",
-    icon: Server,
-    items: ["Node.js", "Express.js"],
+    items: ["Node.js", "Express.js", "RESTful APIs", "SaaS Architectures"],
   },
   {
     category: "Database",
-    icon: Database,
-    items: ["MongoDB", "MySQL"],
-  },
-  {
-    category: "Tools & Version Control",
-    icon: GitBranch,
-    items: ["Git", "GitHub", "VS Code"],
+    items: ["MongoDB", "MySQL", "PostgreSQL"],
   },
   {
     category: "Programming",
-    icon: Code2,
-    items: ["C++", "JavaScript", "Python (Basic)"],
+    items: ["C++", "Python (Basic)", "Data Structures", "Algorithms"],
+  },
+  {
+    category: "Tools",
+    items: ["Git", "GitHub", "VS Code", "Postman", "Vercel"],
   },
   {
     category: "Languages",
-    icon: Languages,
     items: ["English", "Hindi"],
   },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 bg-secondary/30 relative overflow-hidden">
-      {/* Abstract decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl -z-10" />
+    <section id="skills" className="py-40 bg-background relative border-y border-foreground/5 overflow-hidden">
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
 
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-6 relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          transition={{ duration: 1 }}
+          className="mb-40 flex flex-col md:flex-row justify-between items-end gap-12"
         >
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Technical Skills</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My technical proficiency and tools I use to build robust applications.
+          <div className="max-w-2xl">
+            <h2 className="text-[12px] tracking-[0.8em] uppercase font-black text-primary mb-8">Capabilities</h2>
+            <h3 className="text-6xl md:text-8xl font-black tracking-tighter leading-none">Technical Ecosystem</h3>
+          </div>
+          <p className="text-xl text-foreground/40 font-medium max-w-[300px] leading-relaxed">
+             A curated selection of technologies crafted for the modern web.
           </p>
         </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skillGroup, index) => (
-            <motion.div
-              key={skillGroup.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative p-0.5 rounded-xl bg-gradient-to-br from-primary/20 via-background to-background hover:from-primary/30 hover:via-background/90 hover:to-background/90 transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="absolute inset-0.5 rounded-lg bg-background/80 backdrop-blur-sm group-hover:bg-background/90 transition-colors duration-300" />
-              <div className="relative z-10 p-6 md:p-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/20 text-primary ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300">
-                    <skillGroup.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold font-heading text-foreground group-hover:text-primary/90 transition-colors duration-300">
-                    {skillGroup.category}
-                  </h3>
+ 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {skills.map((skillGroup, index) => {
+            const icons = [<Layout key="1"/>, <Server key="2"/>, <Database key="3"/>, <Code2 key="4"/>, <Terminal key="5"/>, <Languages key="6"/>];
+            return (
+              <motion.div
+                key={skillGroup.category}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className={`group p-12 bg-foreground/[0.02] border border-foreground/5 rounded-[3rem] backdrop-blur-xl hover:bg-foreground/[0.04] hover:border-primary/20 transition-all duration-700 ${
+                  index === 0 || index === 4 ? 'md:col-span-2' : ''
+                }`}
+              >
+                <div className="flex justify-between items-start mb-16">
+                   <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+                      {icons[index % icons.length]}
+                   </div>
+                   <span className="text-[100px] font-black opacity-[0.02] absolute right-8 top-0 group-hover:opacity-[0.04] transition-opacity">
+                      {index + 1}
+                   </span>
                 </div>
+
+                <h4 className="text-[12px] tracking-[0.5em] uppercase font-black mb-10 text-primary">
+                  {skillGroup.category}
+                </h4>
                 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-x-8 gap-y-6">
                   {skillGroup.items.map((item) => (
                     <span
                       key={item}
-                      className="px-3 py-1.5 rounded-md bg-background/70 border border-border/50 text-sm font-medium text-foreground/90 hover:bg-background hover:border-primary/50 hover:text-primary transition-all duration-200 cursor-default shadow-sm"
+                      className="text-2xl md:text-3xl font-black tracking-tighter text-foreground/70 hover:text-foreground transition-all flex items-center gap-2 group/item"
                     >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover/item:bg-primary transition-colors" />
                       {item}
                     </span>
                   ))}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

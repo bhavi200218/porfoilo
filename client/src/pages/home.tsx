@@ -9,55 +9,38 @@ import { Contact } from "@/components/contact";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 export default function Home() {
-  const sectionClasses = "py-20 md:py-24 lg:py-28";
-  const containerClasses = "container mx-auto px-4 md:px-6";
-  
+  const containerClasses = "container mx-auto px-6";
+
   return (
-    <div className="min-h-screen bg-background/50 text-foreground overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-foreground selection:text-background">
       <Navbar />
+
       <main className="relative z-10">
-        <section id="home" className={sectionClasses}>
-          <Hero />
-        </section>
+        <Hero />
         
-        <section id="education" className={`${sectionClasses} bg-background/80 backdrop-blur-sm`}>
-          <div className={containerClasses}>
-            <Education />
-          </div>
-        </section>
-        
-        <section id="projects" className={sectionClasses}>
-          <div className={containerClasses}>
-            <Projects />
-          </div>
-        </section>
-        
-        <section id="experience" className={`${sectionClasses} bg-background/80 backdrop-blur-sm`}>
-          <div className={containerClasses}>
-            <Experience />
-          </div>
-        </section>
-        
-        <section id="skills" className={sectionClasses}>
-          <div className={containerClasses}>
-            <Skills />
-          </div>
-        </section>
-        
-        <section id="contact" className={`${sectionClasses} bg-background/80 backdrop-blur-sm`}>
-          <div className={containerClasses}>
-            <Contact />
-          </div>
-        </section>
+        <Projects />
+
+        <Experience />
+
+        <Education />
+
+        <Skills />
+
+        <Contact />
       </main>
-      
-      <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border/50 bg-background/80 backdrop-blur-sm">
+
+      <footer className="py-20 border-t border-border/50 bg-background text-center">
         <div className={containerClasses}>
-          <p>© {new Date().getFullYear()} Bhawanshi Dosi. All rights reserved.</p>
+          <h2 className="text-[10px] tracking-[0.5em] uppercase font-bold text-foreground/20 mb-8">
+            Bhawanshi Dosi — {new Date().getFullYear()}
+          </h2>
+          <p className="text-[10px] tracking-[0.2em] uppercase font-bold opacity-40">
+            Designed for the future. Built with passion.
+          </p>
         </div>
       </footer>
-      
+
       <ScrollToTop />
     </div>
   );
-}
+}

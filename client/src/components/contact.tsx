@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-/* eslint-disable tailwindcss/no-custom-classname */
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -28,7 +27,6 @@ export function Contact() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Show loading state
     const loadingToast = toast({
       title: "Sending...",
       description: "Your message is being sent.",
@@ -38,148 +36,116 @@ export function Contact() {
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
 
-      // Parse response as text first to handle non-JSON responses
-      const responseText = await response.text();
-      let data;
-      
-      try {
-        data = responseText ? JSON.parse(responseText) : {};
-      } catch (e) {
-        console.error('Failed to parse JSON response:', responseText);
-        throw new Error('Received an invalid response from the server');
-      }
-      
-      if (!response.ok) {
-        throw new Error(data.error || `Request failed with status ${response.status}`);
-      }
-      
-      // Show success message
+      if (!response.ok) throw new Error('Failed to send message');
+
       toast({
         title: "Message Sent! 🎉",
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
-      
-      // Reset form after successful submission
-      form.reset({
-        name: "",
-        email: "",
-        message: ""
-      });
-      
+
+      form.reset();
     } catch (error) {
-      console.error('Error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-      
       toast({
         title: "Error",
-        description: `Failed to send message: ${errorMessage}`,
+        description: "Failed to send message. Please try again later.",
         variant: "destructive",
       });
-    }
-    
-    // Dismiss the loading toast in a finally block to ensure it's always dismissed
-    if (loadingToast && typeof loadingToast === 'object' && 'dismiss' in loadingToast) {
-      loadingToast.dismiss();
     }
   }
 
   return (
-    <section 
-      id="contact"
-      className="py-20 bg-background relative overflow-hidden"
-    >
-      {/* Abstract decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10" />
+    <section id="contact" className="py-60 bg-background relative overflow-hidden">
+      {/* Immersive Cinematic Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[180px] opacity-40 animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] opacity-30" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay" />
+      </div>
 
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-32 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-foreground">Get In Touch</h2>
-          <p className="text-muted-foreground/80 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss a new opportunity? I'd love to hear from you.
+          <h2 className="text-[12px] tracking-[0.8em] uppercase font-black text-primary/40 mb-8">Connect</h2>
+          <h3 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-8">
+            Let's Define<br />
+            <span className="text-outline-primary text-transparent">the Future Together</span>
+          </h3>
+          <p className="text-lg text-foreground/40 font-medium max-w-xl mx-auto leading-relaxed">
+             Have a visionary project in mind? Let's bring it to life with precision and passion.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-48">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
+            transition={{ duration: 1.2 }}
+            className="lg:col-span-12 xl:col-span-5 space-y-24 mb-16 xl:mb-0"
           >
-            <div className="bg-card/80 backdrop-blur-sm p-8 rounded-2xl border border-border shadow-lg">
-              <h3 className="text-2xl font-bold font-heading mb-6 text-foreground">Contact Information</h3>
-              <div className="space-y-6">
-                <a 
-                  href="mailto:bhavid2002@gmail.com" 
-                  className="flex items-start gap-4 group hover:bg-accent/50 p-3 rounded-xl transition-colors"
-                >
-                  <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 text-foreground">Email</h4>
-                    <p className="text-muted-foreground">bhavid2002@gmail.com</p>
-                  </div>
+            <div className="group">
+              <h4 className="text-[11px] tracking-[0.5em] uppercase font-black text-primary mb-8 group-hover:translate-x-2 transition-transform duration-500">Communication</h4>
+              <div className="space-y-4">
+                <a href="mailto:bhavid2002@gmail.com" className="block text-3xl md:text-5xl font-black tracking-tighter hover:text-primary transition-all duration-500">
+                  bhavid2002@gmail.com
                 </a>
-
-                <a 
-                  href="https://www.google.com/maps/place/Banswara,+Rajasthan" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 group hover:bg-accent/50 p-3 rounded-xl transition-colors"
-                >
-                  <div className="p-3 rounded-xl bg-secondary/20 text-secondary-foreground group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1 text-foreground">Location</h4>
-                    <p className="text-muted-foreground">Banswara, Rajasthan</p>
-                  </div>
-                </a>
+                <div className="flex items-center gap-4 text-xl text-foreground/30 font-bold">
+                   <MapPin className="w-5 h-5" />
+                   <span>Rajasthan, India</span>
+                </div>
               </div>
+            </div>
+
+            <div className="group">
+               <h4 className="text-[11px] tracking-[0.5em] uppercase font-black text-primary mb-8 group-hover:translate-x-2 transition-transform duration-500">Digital Presence</h4>
+               <div className="flex flex-wrap gap-12">
+                  <a href="https://linkedin.com/in/bhawanshi-dosi" target="_blank" className="text-2xl font-black tracking-tighter hover:text-primary transition-all group/link relative overflow-hidden py-2">
+                     LINKEDIN
+                     <span className="absolute bottom-0 left-0 w-full h-1 bg-primary transform translate-x-[-101%] group-hover/link:translate-x-0 transition-transform duration-500" />
+                  </a>
+                  <a href="https://github.com/bhawanshi2002" target="_blank" className="text-2xl font-black tracking-tighter hover:text-primary transition-all group/link relative overflow-hidden py-2">
+                     GITHUB
+                     <span className="absolute bottom-0 left-0 w-full h-1 bg-primary transform translate-x-[-101%] group-hover/link:translate-x-0 transition-transform duration-500" />
+                  </a>
+               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1.2 }}
+            className="lg:col-span-12 xl:col-span-7 p-10 md:p-16 bg-foreground/[0.03] border border-foreground/5 rounded-[4rem] backdrop-blur-3xl relative group"
           >
-            <div className="bg-card/80 backdrop-blur-sm p-8 rounded-2xl border border-border shadow-lg">
-              <h3 className="text-2xl font-bold font-heading mb-6 text-foreground">Send Me a Message</h3>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 via-transparent to-transparent rounded-[4rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10" />
+            
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <FormField
                     control={form.control}
                     name="name"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-foreground">Full Name</FormLabel>
+                      <FormItem className="space-y-6">
+                        <FormLabel className="text-[10px] tracking-[0.3em] uppercase font-black text-foreground/30">Identity</FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="Bhavi Dosi" 
+                            placeholder="Your Name" 
                             {...field} 
-                            className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-primary" 
+                            className="h-16 bg-transparent border-0 border-b-2 border-foreground/10 rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary transition-all text-xl font-bold placeholder:text-foreground/10" 
                           />
                         </FormControl>
-                        <FormMessage className="text-destructive" />
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -187,47 +153,63 @@ export function Contact() {
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-foreground">Email</FormLabel>
+                      <FormItem className="space-y-6">
+                        <FormLabel className="text-[10px] tracking-[0.3em] uppercase font-black text-foreground/30">Mailbox</FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="bhavidosi@example.com" 
+                            placeholder="Your Email" 
                             {...field} 
-                            className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-primary"
+                            className="h-16 bg-transparent border-0 border-b-2 border-foreground/10 rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary transition-all text-xl font-bold placeholder:text-foreground/10"
                           />
                         </FormControl>
-                        <FormMessage className="text-destructive" />
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-foreground">Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="let's connect..."
-                            className="min-h-[120px] bg-background/50 border-border text-foreground placeholder:text-muted-foreground/60 focus-visible:ring-2 focus-visible:ring-primary"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage className="text-destructive" />
-                      </FormItem>
-                    )}
-                  />
-                  <Button 
-                    type="submit" 
-                    className="w-full gap-2 group bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/90 text-primary-foreground font-medium transition-all duration-300 transform hover:scale-[1.02]"
-                  >
-                    Send Message
-                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </form>
-              </Form>
-            </div>
+                </div>
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem className="space-y-6">
+                      <FormLabel className="text-[10px] tracking-[0.3em] uppercase font-black text-foreground/30">Vision</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="What disruptive idea shall we build?"
+                          className="min-h-[150px] bg-transparent border-0 border-b-2 border-foreground/10 rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary transition-all text-xl font-bold resize-none placeholder:text-foreground/10 leading-relaxed"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button 
+                  type="submit" 
+                  className="w-full h-20 bg-foreground text-background hover:bg-primary hover:text-white text-base tracking-[0.5em] uppercase font-black transition-all rounded-[2rem] shadow-xl group/btn overflow-hidden relative"
+                >
+                  <span className="relative z-10">Initiate Protocol</span>
+                  <div className="absolute inset-0 bg-primary transform translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
+                </Button>
+              </form>
+            </Form>
           </motion.div>
+        </div>
+
+        <div className="pt-24 border-t border-foreground/5 flex flex-col md:flex-row justify-between items-center gap-12 relative">
+           <div className="flex flex-col items-center md:items-start group">
+              <span className="text-4xl font-black tracking-tighter group-hover:text-primary transition-colors">BHAWANSHI DOSI</span>
+              <div className="flex items-center gap-4 mt-4">
+                 <span className="w-12 h-px bg-primary" />
+                 <span className="text-[11px] tracking-[0.6em] uppercase font-black text-foreground/30">Designer • Developer • 2026</span>
+              </div>
+           </div>
+           
+           <div className="text-center md:text-right max-w-sm">
+              <p className="text-[10px] tracking-[0.8em] font-black uppercase text-foreground/20 leading-loose">
+                 Architecting digital futures through minimal precision.
+              </p>
+           </div>
         </div>
       </div>
     </section>

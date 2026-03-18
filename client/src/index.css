@@ -4,152 +4,101 @@
 
 @layer base {
   :root {
-    /* Vibrant Theme - High Contrast with Gradients */
-    --background: 260 70% 96%; /* Very light purple tint */
-    --foreground: 270 100% 30%; /* Deep purple for text */
+    /* Minimalist "Flying Saucer" Theme */
+    --background: 0 0% 98%; /* Off-white */
+    --foreground: 0 0% 0%; /* Pure Black */
 
-    --muted: 260 30% 92%;
-    --muted-foreground: 270 50% 40%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    --popover: 260 70% 98%;
-    --popover-foreground: 270 100% 30%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
 
-    --card: 260 70% 98%;
-    --card-foreground: 270 100% 30%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
 
-    --border: 270 50% 90%;
-    --input: 270 50% 90%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
 
-    --primary: 270 80% 50%; /* Vibrant purple */
+    --primary: 0 0% 0%; /* Black */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 320 80% 50%; /* Pink */
+    --secondary: 0 0% 40%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 210 90% 50%; /* Blue */
+    --accent: 0 0% 0%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 90% 50%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --ring: 270 80% 80%;
+    --ring: 0 0% 0%;
 
-    --radius: 0.75rem;
-    --shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
-    --elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --elevation-3: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --radius: 0.5rem;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   }
 
   .dark {
-    /* Dark Theme - High Contrast with Neon Accents */
-    --background: 240 20% 8%; /* Deep navy blue */
-    --foreground: 0 0% 98%; /* Off-white */
+    /* Minimalist "Antariksh" Theme */
+    --background: 0 0% 0%; /* Pure Black */
+    --foreground: 0 0% 100%; /* Pure White */
 
-    --muted: 240 15% 15%;
-    --muted-foreground: 240 5% 85%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --popover: 240 20% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
 
-    --card: 240 20% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
 
-    --border: 240 20% 25%;
-    --input: 240 20% 25%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
 
-    --primary: 270 90% 70%; /* Bright purple */
+    --primary: 0 0% 100%; /* White */
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 320 90% 70%; /* Bright pink */
+    --secondary: 0 0% 60%;
     --secondary-foreground: 0 0% 0%;
 
-    --accent: 190 90% 70%; /* Bright cyan */
+    --accent: 0 0% 100%;
     --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 90% 60%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --ring: 270 90% 70%;
-    
-    --shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
-    --elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-    --elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.25);
-    --elevation-3: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    --ring: 0 0% 100%;
   }
 }
 
 @layer utilities {
-  /* Enhanced Gradients */
-  .text-gradient {
-    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: gradient 3s ease infinite;
+  .oval-mask {
+    clip-path: ellipse(40% 50% at 50% 50%);
+    transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .dark .text-gradient {
-    background: linear-gradient(90deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: gradient 3s ease infinite;
+  .oval-mask:hover {
+    clip-path: ellipse(50% 50% at 50% 50%);
   }
 
-  /* 3D Effects */
-  .card-3d {
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: var(--elevation-2);
+  .text-outline {
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
   }
 
-  .card-3d:hover {
-    transform: translateY(-5px) rotateX(5deg);
-    box-shadow: var(--elevation-3);
+  .cinematic-shadow {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   }
 
-  .btn-3d {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
 
-  .btn-3d:active {
-    transform: translateY(4px);
-    box-shadow: none;
-  }
-
-  /* Glass Morphism */
-  .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .dark .glass {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* Animations */
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
   }
 }
 
@@ -159,18 +108,25 @@
   }
   
   body {
-    @apply bg-background text-foreground antialiased;
-    background-image: 
-      radial-gradient(at 40% 20%, hsla(270, 90%, 80%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsla(320, 90%, 60%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsla(210, 90%, 70%, 0.1) 0px, transparent 50%);
+    @apply bg-background text-foreground antialiased selection:bg-foreground selection:text-background;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    filter: contrast(150%) brightness(100%);
   }
 
   .dark body {
     background-image: 
-      radial-gradient(at 40% 20%, hsla(270, 90%, 40%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsla(320, 90%, 40%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsla(190, 90%, 40%, 0.1) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, hsla(0, 0%, 100%, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(0, 0%, 100%, 0.05) 0px, transparent 50%);
   }
   
   h1, h2, h3, h4, h5, h6 {

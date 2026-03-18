@@ -7,62 +7,68 @@ import { GraduationCap, BookOpen } from "lucide-react";
 const education = [
   {
     degree: "Bachelor's of Computer Application",
-    institution: "Ahmedabad, Gujarat",
-    year: "Graduated",
-    icon: <BookOpen className="h-5 w-5" />
+    institution: "Computer • Ahmedabad, Gujarat",
+    year: "07/2024",
   },
   {
     degree: "Senior Secondary",
-    institution: "CBSE Board, Banswara, Rajasthan",
-    year: "Completed",
-    icon: <GraduationCap className="h-5 w-5" />
+    institution: "CBSE Board • Banswara, Rajasthan",
+    year: "06/2019",
+  },
+  {
+    degree: "Secondary",
+    institution: "CBSE Board • Banswara, Rajasthan",
+    year: "04/2017",
   },
 ];
 
 export function Education() {
   return (
-    <section id="education" className="py-20 bg-background relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10" />
-
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="education" className="py-40 bg-background relative overflow-hidden">
+      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-foreground/5 to-transparent -translate-y-1/2" />
+      
+      <div className="container mx-auto px-6 relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 1 }}
+          className="mb-40 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">Education</h2>
-          <p className="text-muted-foreground/80 max-w-2xl mx-auto">
-            My academic journey that laid the foundation for my career.
-          </p>
+          <h2 className="text-[12px] tracking-[0.8em] uppercase font-black text-primary mb-8">Academic</h2>
+          <h3 className="text-6xl md:text-8xl font-black tracking-tighter leading-none">Education Legacy</h3>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto space-y-32">
           {education.map((edu, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative"
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}
             >
-              <div className="absolute -inset-0.5 bg-linear-to-r from-primary/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 blur transition duration-500 group-hover:duration-200" />
-              <div className="relative bg-card/70 backdrop-blur-sm p-6 rounded-xl border border-border hover:border-primary/30 transition-all duration-300 h-full">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary mt-1">
-                    {edu.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-foreground">{edu.degree}</h3>
-                    <p className="text-muted-foreground mt-1">{edu.institution}</p>
-                    <span className="inline-block mt-3 text-sm bg-primary/10 text-primary px-3 py-1 rounded-full">
-                      {edu.year}
-                    </span>
-                  </div>
+              <div className="w-full md:w-1/2 relative group">
+                <div className="absolute -inset-4 bg-primary/5 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="relative p-12 md:p-16 bg-foreground/[0.02] border border-foreground/5 rounded-[4rem] backdrop-blur-3xl overflow-hidden hover:border-primary/20 transition-all duration-700">
+                  <span className="text-6xl md:text-8xl font-black absolute -right-4 -top-4 opacity-[0.03] select-none">
+                    0{index + 1}
+                  </span>
+                  <span className="text-sm tracking-[0.4em] font-black text-primary mb-10 block">
+                    {edu.year}
+                  </span>
+                  <h4 className="text-3xl md:text-5xl font-black mb-6 tracking-tighter">
+                    {edu.degree}
+                  </h4>
+                  <p className="text-xl text-foreground/40 font-bold tracking-tight uppercase leading-relaxed max-w-[300px]">
+                    {edu.institution}
+                  </p>
                 </div>
+              </div>
+              <div className="hidden md:block w-px h-24 bg-foreground/10" />
+              <div className="w-full md:w-1/2 flex items-center justify-center">
+                 <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_20px_rgba(var(--primary),0.5)]" />
               </div>
             </motion.div>
           ))}
@@ -70,4 +76,4 @@ export function Education() {
       </div>
     </section>
   );
-}
+}
