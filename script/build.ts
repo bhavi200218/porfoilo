@@ -42,7 +42,7 @@ async function buildAll() {
   const __dirname = dirname(__filename);
   
   await viteBuild({
-    configFile: join(__dirname, "../client/vite.config.ts"),
+    configFile: join(__dirname, "../vite.config.ts"),
   });
 
   console.log("building server...");

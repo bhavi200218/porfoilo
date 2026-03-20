@@ -4,37 +4,42 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  link: string;
+  image?: string;
+  gradient?: string;
+}
+
+const projects: Project[] = [
   {
-    title: "Food App",
-    description: "A user-friendly restaurant menu app that allows customers to browse dishes, view details, and place orders seamlessly.",
-    link: "https://luxury-sprite-39e324.netlify.app/",
-    image: "/images/food-app.png"
+    title: "Shalini Luxe",
+    description: "Premium Ecommerce Experience - Curated for the discerning few. A high-end product showcase with a focus on luxury lifestyle and performance electronics.",
+    link: "https://shalinitech.netlify.app/",
+    image: "/images/projects/shalini-luxe.png",
+    gradient: "from-zinc-900 via-zinc-800 to-black"
   },
   {
-    title: "E-commerce Platform",
-    description: "An e-commerce platform featuring product listings, shopping cart functionality, and a streamlined checkout process.",
-    link: "https://illustrious-biscotti-334768.netlify.app/",
-    image: "/images/ecommerce.png",
-    gradient: "from-blue-500/20 to-purple-500/20"
+    title: "Certificate Generator",
+    description: "A minimal, nature-inspired certificate studio. Generate professional certificates for LinkedIn and Udemy instantly by filling in details once.",
+    link: "https://bhavicertificategenerator.netlify.app/",
+    image: "/images/projects/certificate-generator.png",
+    gradient: "from-emerald-500/20 to-teal-500/20"
   },
   {
-    title: "JS Calculator",
-    description: "A fully functional calculator with a clean interface, capable of performing basic arithmetic operations using JavaScript.",
-    link: "https://friendly-travesseiro-27cfd3.netlify.app/",
-    image: "/images/calculator.jpg"
+    title: "Revenue Landing Page",
+    description: "AI-powered ad optimization platform. Maximize ad revenue by up to 40% with real-time analytics and enterprise-grade security.",
+    link: "https://revenue-landingpage.netlify.app/",
+    image: "/images/projects/revenue-landing-page.png",
+    gradient: "from-blue-600/20 to-indigo-600/20"
   },
   {
-    title: "Tic Tac Toe",
-    description: "An interactive Tic Tac Toe game with a responsive design, enabling single and two-player modes.",
-    link: "https://radiant-dodol-53ef05.netlify.app/",
-    image: "/images/tictactoe.jpg"
-  },
-  {
-    title: "Twitter Clone",
-    description: "A custom Twitter page clone that replicates key features like posting, liking, and following.",
-    link: "https://stellular-faun-915cd6.netlify.app/",
-    image: "/images/twitter.jpg"
+    title: "Women's Lifestyle",
+    description: "A premium fashion and lifestyle portal featuring curated summer collections and trendy elegance.",
+    link: "https://womenslifestyle.netlify.app/",
+    image: "/images/projects/womens-lifestyle.png",
+    gradient: "from-rose-400/20 to-pink-400/20"
   },
 ];
 
