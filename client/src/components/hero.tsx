@@ -100,9 +100,9 @@ export function Hero() {
               className="absolute inset-0"
             >
               <img 
-                src="/images/bhawanshi-hero.jpg" 
+                src="/images/bhawanshi-stylized-v4.png" 
                 alt="Bhawanshi Dosi" 
-                className="w-full h-full object-cover grayscale contrast-[1.1] brightness-[1.1] group-hover:grayscale-0 transition-all duration-1000"
+                className="w-full h-full object-cover grayscale brightness-[0.8] contrast-[1.2] group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-1000"
               />
               {/* Removed gradient for cleaner light theme appearance */}
             </motion.div>
